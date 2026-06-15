@@ -28,6 +28,8 @@ Aplicativo mobile desenvolvido com **Ionic Framework + Angular**, que combina bu
 - Exibe o **placar de habilidades** com o critério de vitória utilizado
 - Caso nenhuma batalha tenha ocorrido ainda, exibe mensagem orientando o usuário
 
+![Tela da Pokédex mostrando dois Pokémons em batalha com resultado Empate](src/assets/icon/Captura%20de%20tela%202026-06-15%20192401.png)
+
 ---
 
 ## 🏆 Regra de Batalha
