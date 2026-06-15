@@ -29,16 +29,16 @@ export class Tab2Page implements OnInit{
 
   buscarPokemon(){
     this.pokeApiService.getPokeApiService()
-      .subscribe(value => {
-        this.pokemonAdversary.weight = JSON.parse(JSON.stringify(value))['weight'];
-        this.pokemonAdversary.name = JSON.parse(JSON.stringify(value))['name'];
-        this.pokemonAdversary.height = JSON.parse(JSON.stringify(value))['height'];
-        this.pokemonAdversary.abilities = JSON.parse(JSON.stringify(value))['abilities'].length;
-        this.pokemonAdversary.image = JSON.parse(JSON.stringify(value))['sprites'].other.dream_world.front_default;
-        //
+      .subscribe((value: any) => {
+        this.pokemonAdversary.weight = value.weight;
+        this.pokemonAdversary.name = value.name;
+        this.pokemonAdversary.height = value.height;
+        this.pokemonAdversary.abilities = value.abilities.length;
+        this.pokemonAdversary.image = value.sprites.other.dream_world.front_default;
         this.pokeApiService.adversaryAbility = this.pokemonAdversary.abilities;
-        console.log(this.pokeApiService.lastPokemonAbility)
-        console.log(this.pokeApiService.adversaryAbility)
+
+        // Salva no serviço para exibir na Pokédex
+        this.pokeApiService.adversaryPokemon = { ...this.pokemonAdversary };
         this.setResultado();
       });
   }
@@ -48,13 +48,15 @@ export class Tab2Page implements OnInit{
   }
 
   setResultado(){
-     if(this.pokeApiService.adversaryAbility === this.pokeApiService.lastPokemonAbility){
+     if(this.pokeApiService.lastPokemonAbility === this.pokeApiService.adversaryAbility){
         this.resultado = 'Empatou'
-     }else if(this.pokeApiService.adversaryAbility > this.pokeApiService.lastPokemonAbility){
+     }else if(this.pokeApiService.lastPokemonAbility > this.pokeApiService.adversaryAbility){
         this.resultado = 'Ganhou'
      }else{
-      this.resultado = 'Perdeu'
+        this.resultado = 'Perdeu'
      }
+     // Salva resultado no serviço para a Pokédex
+     this.pokeApiService.resultado = this.resultado;
   }
 
 }

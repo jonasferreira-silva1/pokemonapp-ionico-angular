@@ -11,12 +11,34 @@ Aplicativo mobile desenvolvido com **Ionic Framework + Angular**, que combina bu
 - O app consulta a **API ViaCEP** e exibe o endereço correspondente (logradouro, bairro, cidade, UF)
 - Simultaneamente, busca um **Pokémon aleatório** na **PokéAPI** e exibe:
   - Nome, imagem, altura, peso e número de habilidades
+- Os dados do Pokémon são salvos para uso na batalha e na Pokédex
 
 ### Aba 2 — Batalhar
 - Gera um **Pokémon adversário** aleatório automaticamente ao entrar na tela
 - Compara o número de habilidades do seu Pokémon (buscado na Aba 1) com o adversário
-- Exibe o **resultado da batalha**: Ganhou 🔴 / Perdeu 🟢 / Empatou 🟡
+- Exibe o **resultado da batalha**: Ganhou 🟢 / Perdeu 🔴 / Empatou 🟡
 - Botão de câmera para **capturar fotos** via câmera do dispositivo (Capacitor)
+
+### Aba 3 — Pokédex
+- Exibe os **dois Pokémons da última batalha** lado a lado com suas imagens
+- Mostra o **resultado da batalha** diretamente abaixo de cada Pokémon:
+  - 👑 **VENCEDOR!** — tag verde em destaque
+  - 💀 **PERDEU** — tag vermelha
+  - 🤝 **EMPATE** — tag amarela nos dois lados
+- Exibe o **placar de habilidades** com o critério de vitória utilizado
+- Caso nenhuma batalha tenha ocorrido ainda, exibe mensagem orientando o usuário
+
+---
+
+## 🏆 Regra de Batalha
+
+O critério de vitória é o **número de habilidades** de cada Pokémon:
+
+| Situação | Resultado |
+|---|---|
+| Seu Pokémon tem mais habilidades | 👑 Ganhou |
+| Adversário tem mais habilidades | 💀 Perdeu |
+| Número de habilidades igual | 🤝 Empatou |
 
 ---
 
@@ -89,12 +111,12 @@ No Android Studio, clique em **Run** para executar no emulador ou em um disposit
 src/
 ├── app/
 │   ├── services/
-│   │   ├── poke-api.service.ts   # Integração com a PokéAPI
+│   │   ├── poke-api.service.ts   # Integração com a PokéAPI + estado da batalha
 │   │   ├── via-cep.service.ts    # Integração com a ViaCEP
 │   │   └── photo.service.ts      # Captura de foto via Capacitor
 │   ├── tab1/                     # Tela de busca de Pokémon por CEP
 │   ├── tab2/                     # Tela de batalha entre Pokémons
-│   ├── tab3/                     # Tela exploratória
+│   ├── tab3/                     # Pokédex — resultado visual da batalha
 │   └── tabs/                     # Navegação por abas
 ├── assets/
 ├── environments/

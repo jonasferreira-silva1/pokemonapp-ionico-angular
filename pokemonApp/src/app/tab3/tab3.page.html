@@ -1,17 +1,89 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>Pokédex</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- Estado vazio -->
+  <div class="empty-state" *ngIf="!pokeApiService.myPokemon.name || !pokeApiService.adversaryPokemon.name">
+    <ion-icon name="game-controller-outline" class="empty-icon"></ion-icon>
+    <p>Nenhuma batalha registrada ainda.</p>
+    <p>Vá até <strong>Buscar</strong> para escolher seu Pokémon e depois <strong>Batalhar</strong>!</p>
+  </div>
+
+  <!-- Pokédex com resultado -->
+  <div *ngIf="pokeApiService.myPokemon.name && pokeApiService.adversaryPokemon.name">
+
+    <!-- Arena -->
+    <div class="arena">
+
+      <!-- Meu Pokémon -->
+      <div class="pokemon-side">
+        <p class="rotulo">Seu Pokémon</p>
+        <ion-img class="pokemon-img" [src]="pokeApiService.myPokemon.image" [alt]="pokeApiService.myPokemon.name"></ion-img>
+        <h2 class="pokemon-name">{{ pokeApiService.myPokemon.name | uppercase }}</h2>
+        <div class="pokemon-stats">
+          <span>⚡ {{ pokeApiService.myPokemon.abilities }} habilidades</span>
+          <span>📏 {{ pokeApiService.myPokemon.height }}</span>
+          <span>⚖️ {{ pokeApiService.myPokemon.weight }}</span>
+        </div>
+
+        <!-- Vencedor embaixo da imagem -->
+        <div class="tag-vencedor" *ngIf="pokeApiService.resultado === 'Ganhou'">
+          👑 VENCEDOR!
+        </div>
+        <div class="tag-perdedor" *ngIf="pokeApiService.resultado === 'Perdeu'">
+          💀 PERDEU
+        </div>
+        <div class="tag-empate" *ngIf="pokeApiService.resultado === 'Empatou'">
+          🤝 EMPATE
+        </div>
+      </div>
+
+      <!-- VS -->
+      <div class="vs-container">
+        <span class="vs">VS</span>
+      </div>
+
+      <!-- Adversário -->
+      <div class="pokemon-side">
+        <p class="rotulo">Adversário</p>
+        <ion-img class="pokemon-img" [src]="pokeApiService.adversaryPokemon.image" [alt]="pokeApiService.adversaryPokemon.name"></ion-img>
+        <h2 class="pokemon-name">{{ pokeApiService.adversaryPokemon.name | uppercase }}</h2>
+        <div class="pokemon-stats">
+          <span>⚡ {{ pokeApiService.adversaryPokemon.abilities }} habilidades</span>
+          <span>📏 {{ pokeApiService.adversaryPokemon.height }}</span>
+          <span>⚖️ {{ pokeApiService.adversaryPokemon.weight }}</span>
+        </div>
+
+        <!-- Vencedor embaixo da imagem -->
+        <div class="tag-vencedor" *ngIf="pokeApiService.resultado === 'Perdeu'">
+          👑 VENCEDOR!
+        </div>
+        <div class="tag-perdedor" *ngIf="pokeApiService.resultado === 'Ganhou'">
+          💀 PERDEU
+        </div>
+        <div class="tag-empate" *ngIf="pokeApiService.resultado === 'Empatou'">
+          🤝 EMPATE
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Placar -->
+    <ion-card class="placar-card">
+      <ion-card-content>
+        <p class="placar-titulo">🏆 Critério: número de habilidades</p>
+        <p class="placar-detalhe">
+          <strong>{{ pokeApiService.myPokemon.name | uppercase }}</strong>: {{ pokeApiService.myPokemon.abilities }}
+          &nbsp;×&nbsp;
+          <strong>{{ pokeApiService.adversaryPokemon.name | uppercase }}</strong>: {{ pokeApiService.adversaryPokemon.abilities }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
 </ion-content>

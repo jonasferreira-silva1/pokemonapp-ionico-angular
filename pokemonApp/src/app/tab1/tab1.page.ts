@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PokeApiService } from '../services/poke-api.service';
 import { ViaCEPService } from '../services/via-cep.service';
 
@@ -32,21 +32,25 @@ export class Tab1Page{
 
   buscarPokemon(areaBuscarPokemon:string){
     this.viaCEPService.getViaCEPService(areaBuscarPokemon)
-      .subscribe((value)=>{
-        this.areaBusca.logradouro = JSON.parse(JSON.stringify(value))['logradouro'];
-        this.areaBusca.bairro = ', '+JSON.parse(JSON.stringify(value))['bairro'];
-        this.areaBusca.localidade = ' - '+JSON.parse(JSON.stringify(value))['localidade'];
-        this.areaBusca.uf = '-'+JSON.parse(JSON.stringify(value))['uf'];
+      .subscribe((value: any) => {
+        this.areaBusca.logradouro = value.logradouro;
+        this.areaBusca.bairro = ', ' + value.bairro;
+        this.areaBusca.localidade = ' - ' + value.localidade;
+        this.areaBusca.uf = '-' + value.uf;
       });
-      this.pokeApiService.getPokeApiService()
-      .subscribe((value)=>{
-        this.pokemon.weight = JSON.parse(JSON.stringify(value))['weight'];
-        this.pokemon.name = JSON.parse(JSON.stringify(value))['name'];
-        this.pokemon.height = JSON.parse(JSON.stringify(value))['height'];
-        this.pokemon.abilities = JSON.parse(JSON.stringify(value))['abilities'].length;
-        this.pokemon.image = JSON.parse(JSON.stringify(value))['sprites'].other.dream_world.front_default;
-        //
+
+    this.pokeApiService.getPokeApiService()
+      .subscribe((value: any) => {
+        this.pokemon.weight = value.weight;
+        this.pokemon.name = value.name;
+        this.pokemon.height = value.height;
+        this.pokemon.abilities = value.abilities.length;
+        this.pokemon.image = value.sprites.other.dream_world.front_default;
         this.pokeApiService.lastPokemonAbility = this.pokemon.abilities;
+
+        // Salva no serviço para exibir na Pokédex
+        this.pokeApiService.myPokemon = { ...this.pokemon };
+        this.pokeApiService.resultado = '';
       });
   }
 }

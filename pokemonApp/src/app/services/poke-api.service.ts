@@ -7,8 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class PokeApiService {
   public id: number = 0;
-  public lastPokemonAbility: number = 0
-  public adversaryAbility: number = 0
+  public lastPokemonAbility: number = 0;
+  public adversaryAbility: number = 0;
+
+  // Dados completos dos dois pokémons para exibir na Pokédex
+  public myPokemon: any = { name: '', image: '', abilities: 0, height: 0, weight: 0 };
+  public adversaryPokemon: any = { name: '', image: '', abilities: 0, height: 0, weight: 0 };
+  public resultado: string = '';
+
   constructor(private httpClient: HttpClient) { }
 
   getPokeApiService() : Observable<any> {
