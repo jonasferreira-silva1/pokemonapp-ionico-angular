@@ -2,6 +2,10 @@
 
 > "No mundo dos monstrinhos de bolso, a tecnologia e a aventura caminham juntas. Mas o que acontece quando o seu mapa de exploração é o sistema de correspondência postal brasileiro?"
 
+<p align="center">
+  <img src="pokemonApp/src/assets/icon/Captura%20de%20tela%202026-06-16%20144804.png" alt="Visão Geral do PokémonApp" width="800">
+</p>
+
 ---
 
 ## 📖 A História: Em Busca do CEP Sagrado
@@ -25,8 +29,6 @@ Em sua jornada pelas rotas do código, ele descobriu que o mundo físico e o dig
 
 3.  **Aba 3 — O Registro Histórico (Pokédex)**
     *   Após o calor da batalha na Arena, a Pokédex registra os dados do último confronto, exibindo lado a lado o Pokémon do treinador e seu oponente, coroando o grande vencedor com uma insígnia de ouro.
-
-![Tela da Pokédex](src/assets/icon/Captura%20de%20tela%202026-06-15%20192401.png)
 
 ---
 
