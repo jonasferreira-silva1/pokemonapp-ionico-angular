@@ -26,6 +26,8 @@ Em sua jornada pelas rotas do código, ele descobriu que o mundo físico e o dig
 3.  **Aba 3 — O Registro Histórico (Pokédex)**
     *   Após o calor da batalha na Arena, a Pokédex registra os dados do último confronto, exibindo lado a lado o Pokémon do treinador e seu oponente, coroando o grande vencedor com uma insígnia de ouro.
 
+![Tela da Pokédex](src/assets/icon/Captura%20de%20tela%202026-06-15%20192401.png)
+
 ---
 
 ## 📱 O Compartimento Secreto: Mockup iPhone 14 Pro Max
